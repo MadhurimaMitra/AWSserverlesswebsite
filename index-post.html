@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Register Now - Digital Design Conference 2022</title>
+  <link rel="stylesheet" href="styles-post.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat&family=Sacramento&display=swap" rel="stylesheet">
+  <script src="jquery-3.1.1.min.js"></script>
+  <script src="knockout-3.4.2.js"></script>
+  <script type="text/javascript">
+    jQuery.support.cors = true;
+
+    $(document).ready(function() {
+
+      var attendeeDetailsViewModel = function() {
+        var self = this;
+
+        self.EmailID = ko.observable("");
+        self.FirstName = ko.observable("");
+        self.LastName = ko.observable("");
+        self.ContactNo = ko.observable("");
+        self.Age = ko.observable("");
+        self.SuccessMessage = ko.observable("");
+
+        self.postAttendeeDetails = function() {
+
+          var attendeeDetails = {
+
+            EmailID: self.EmailID(),
+            FirstName: self.FirstName(),
+            LastName: self.LastName(),
+            ContactNo: self.ContactNo(),
+            Age: self.Age()
+          }
+
+          $.ajax({
+            crossDomain: true,
+            url: 'https://7th46aukki.execute-api.us-east-1.amazonaws.com/dev/post-attendee-details-resource',
+            cache: false,
+            type: 'POST',
+            data: ko.toJSON(attendeeDetails),
+            success: function(data) {
+              self.SuccessMessage('Data saved successfully!')
+              self.EmailID('');
+              self.FirstName('');
+              self.LastName('');
+              self.ContactNo('');
+              self.Age('');
+            }
+          }).fail(
+
+            function(xhr, textStatus, err) {
+              alert("Error happened " + err);
+            });
+        };
+      }
+
+      var viewModel = new attendeeDetailsViewModel();
+      ko.applyBindings(viewModel);
+    });
+  </script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="img-div">
+      <img class="bulb-img" src="bulb.png" alt="bulb-img">
+      <img class="phone-img" src="phone.png" alt="phone-img">
+      <img class="pencil-img" src="pencil.png" alt="pencil-img">
+      <div class="digital-design-para">
+        <p>Explore the world of digital design</p>
+      </div>
+      <img class="digital-drawing-img" src="digital-drawing.png" alt="digital-drawing-img">
+    </div>
+    <div class="form-div">
+      <img class="lock-img" src="lock.png" alt="lock-img">
+      <h2 class="form-heading">Register Now!</h2>
+      <form class="reg-form" action="form-submitted.html" method="post">
+        <div class="">
+          <label for="firstName">First Name</label><br>
+          <input type="text" id="firstName" class="firstName" placeholder=" Enter your first name" required data-bind='value: FirstName'>
+        </div>
+        <div class="">
+          <label for="lastName">Last Name</label><br>
+          <input type="text" id="lastName" class="lastName" placeholder=" Enter your last name" required data-bind='value: LastName'>
+        </div>
+        <div class="">
+          <label for="emailId">Email ID</label><br>
+          <input type="email" id="emailId" class="emailId" placeholder=" Enter your email id" required data-bind='value: EmailID'>
+        </div>
+        <div class="">
+          <label for="contactNo">Contact Number</label><br>
+          <input type="text" id="contactNo" class="contactNo" maxlength="10" pattern="[0-9]{10}" placeholder=" Enter 10-digit mobile number" required data-bind='value: ContactNo'>
+        </div>
+        <div class="">
+          <label for="age">Age</label><br>
+          <input type="number" id="age" class="age" min="18" max="100" placeholder=" Enter your age in digits" required data-bind='value: Age'>
+        </div>
+        <div class="">
+          <label for="current-role">Which option best describes your current role?</label><br>
+          <select class="current-role" id="current-role">
+            <option disabled selected>Select current role</option>
+            <option>Student</option>
+            <option>Full-time job</option>
+            <option>Other</option>
+            <option>Prefer not to say</option>
+          </select>
+        </div>
+        <div class="">
+          <p class="updates-para">Would you like to recieve updates on your email?</p>
+          <input class="yes" type="radio" name="updates" id="yes">
+          <label for="yes" class="yes-label">Yes</label>
+          <input class="no" type="radio" name="updates" id="no">
+          <label for="no" class="no-label">No</label>
+        </div>
+        <hr>
+        <div class="">
+          <span data-bind='text : SuccessMessage' />
+        </div>
+        <div class="">
+          <button type="submit" class="submit" name="button" data-bind="click: $root.postAttendeeDetails">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

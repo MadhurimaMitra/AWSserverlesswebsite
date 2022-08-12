@@ -1,0 +1,117 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html {
+    --color1: #47B5FF;
+    --color2: #1363DF;
+    --color3: #DFF6FF;
+    --color4: #06283D;
+}
+body {
+    background-color: var(--color1);
+}
+.main {
+    background-color: var(--color1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2.5%;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--color4);
+}
+.image {
+    background-color: var(--color2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10%;
+    height: 39rem;
+    border-radius: 0.5rem 0 0 0.5rem;
+}
+.image h2 {
+    color: var(--color3);
+}
+.image img {
+    width: 60%;
+}
+.container {
+    background-color: var(--color3);
+    display: flex;
+    flex-direction: column;
+    gap: 2.5%;
+    height: 39rem;
+    padding: 2%;
+    border-radius: 0 0.5rem 0.5rem 0;
+}
+.container img {
+    width: 10%;
+    align-self: center;
+}
+.searchKey {
+    display: flex;
+    flex-direction: column;
+    padding: 7%;
+}
+.searchKey label {
+    font-weight: bold;
+}
+.container p {
+    align-self: center;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+.result {
+    font-weight: bold;
+}
+input[type="email"] {
+    width: 100%;
+    height: 2.5rem;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 0.5rem;
+    border-style: none;
+    padding: 1%;
+    transition-property: transform;
+    transition-duration: 200ms;
+    transition-timing-function: ease-out;
+}
+input[type="email"]:hover {
+    background-color: var(--color2);
+    color: var(--color3);
+    font-weight: bold;
+    transform: scale(1.025);
+}
+input[type="email"]::placeholder {
+    color: var(--color4);
+    font-size: 0.8rem;
+}
+input[type="email"]:hover::placeholder {
+    color: var(--color3);
+    font-weight: bold;
+}
+input[type="button"] {
+    align-self: center;
+    width: 30%;
+    height: 7%;
+    border-radius: 0.5rem;
+    border-style: none;
+    background-color: var(--color2);
+    color: var(--color3);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: bold;
+    transition-property: transform;
+    transition-duration: 200ms;
+    transition-timing-function: ease-out;
+}
+input[type="button"]:hover {
+    border-style: solid;
+    border-color: var(--color2);
+    background-color: var(--color3);
+    color: var(--color2);
+    font-weight: bold;
+    cursor: pointer;
+    transform: scale(1.05);
+}

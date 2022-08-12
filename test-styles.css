@@ -1,0 +1,141 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+  background-color: #f5f5f5;
+  min-height: 100%;
+}
+.container {
+  background-color: #f5f5f5;
+  font-family: 'Montserrat', sans-serif;
+  width: 100%;
+  height: 1080px;
+  position: relative;
+}
+.form-div {
+  background-color: #fffafa;
+  width: 40%;
+  height: 95%;
+  padding-top: 3%;
+  position: absolute;
+  top: 2.5%;
+  right: 10%;
+  border-radius: 0 0.75rem 0.75rem 0;
+}
+.img-div {
+  background-color: #6495ed;
+  width: 40%;
+  height: 95%;
+  position: absolute;
+  top: 2.5%;
+  left: 10%;
+  border-radius: 0.75rem 0  0 0.75rem;
+}
+.lock-img {
+  height: 6%;
+  display: block;
+  margin: auto;
+}
+.form-heading {
+  margin: 5% auto 10% auto;
+  height: 2%;
+  text-align: center;
+}
+.reg-form {
+  width: 80%;
+  margin: auto;
+}
+div {
+  margin: 0 0 1.5rem 0;
+}
+.firstName, .lastName, .emailId, .contactNo, .age, .current-role {
+  background-color: #f5f5f5;
+  width: 100%;
+  height: 2rem;
+  margin-top: 0.5rem;
+  font-family: 'Montserrat', sans-serif;
+  border-radius: 0.5rem;
+  border-width: thin;
+}
+.firstName:hover, .lastName:hover, .emailId:hover, .contactNo:hover, .age:hover {
+  background-color: #d3d3d3;
+}
+label {
+  width: 100%;
+}
+.updates-para {
+  margin-bottom: 0.5rem;
+}
+.yes, .no {
+  width: 1.25rem;
+  height: 1.25rem;
+  vertical-align: middle;
+}
+.yes-label, .no-label {
+  font-size: 0.8rem;
+  vertical-align: middle;
+}
+.no {
+  margin-left: 0.5rem;
+}
+.current-role, .yes, .yes-label, .no, .no-label {
+  cursor: pointer;
+}
+input::placeholder {
+  font-size: 0.8rem;
+}
+.submit {
+  width: 100%;
+  height: 2.5rem;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #6495ed;
+  color: #fffafa;
+  font-size: 1.2rem;
+  border-radius: 0.5rem;
+  border-width: thin;
+  margin-top: 1.2rem;
+  cursor: pointer;
+}
+.submit:hover {
+  background-color: #fffafa;
+  color: #6495ed;
+}
+.bulb-img {
+  max-width: 30%;
+  height: auto;
+  position: absolute;
+  top: 5%;
+  left: 10%;
+}
+.phone-img {
+  max-width: 30%;
+  height: auto;
+  position: absolute;
+  top: 8%;
+  left: 60%;
+}
+.pencil-img {
+  max-width: 25%;
+  height: auto;
+  position: absolute;
+  top: 30%;
+  left: 30%;
+}
+.digital-design-para {
+  font-family: 'Sacramento', cursive;
+  font-weight: bold;
+  color: #fffafa;
+  font-size: 1.9rem;
+  position: absolute;
+  top: 50%;
+  left: 2%;
+}
+.digital-drawing-img{
+  max-width: 50%;
+  height: auto;
+  position: absolute;
+  top: 60%;
+  left: 25%;
+}

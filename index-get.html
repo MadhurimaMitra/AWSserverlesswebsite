@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <title></title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="styles-get.css">
+  <link href="https://fonts.googleapis.com/css2?&family=Montserrat&family=Roboto+Condensed:ital@1&display=swap"
+    rel="stylesheet">
+  <script src="jquery-3.1.1.min.js"></script>
+  <script src="knockout-3.4.2.js"></script>
+  <script type="text/javascript">
+    jQuery.support.cors = true;
+    $(document).ready(function () {
+
+      var attendeeViewModel = function () {
+        var self = this;
+        self.FirstName = ko.observable("");
+        self.LastName = ko.observable("");
+        self.EmailID = ko.observable("");
+        self.ContactNo = ko.observable("");
+        self.Age = ko.observable("");
+        self.searchKey = ko.observable("");
+
+        self.getAttendeeDetails = function () {
+          $.ajax({
+            crossDomain: true,
+            url: 'https://29wmemgakh.execute-api.us-east-1.amazonaws.com/Dev/getcustomerdetailsbyemail',
+            cache: false,
+            type: 'GET',
+            data: {
+              "EmailID": self.searchKey()
+            },
+            success: function (data) {
+              self.FirstName(data.Item.FirstName),
+                self.LastName(data.Item.LastName),
+                self.EmailID(data.Item.EmailID),
+                self.ContactNo(data.Item.ContactNo),
+                self.Age(data.Item.Age)
+            }
+          });
+        }
+      }
+      var viewModel = new attendeeViewModel();
+      ko.applyBindings(viewModel);
+    });
+  </script>
+</head>
+
+<body>
+  <div class="main">
+    <div class="image">
+      <h2>SEARCH REGISTERED USERS</h2>
+      <img src="detection.png" alt="detection-img">
+    </div>
+    <div class="container">
+      <img class="magnifying-glass-img" src="magnifying-glass.png" alt="magnifying-glass-img">
+      <div class="searchKey">
+        <label for="search">Enter Email ID to search</label><br>
+        <input type="email" id="search" placeholder="Enter the Email ID you want to search for"
+          data-bind='value : searchKey'>
+      </div>
+      <p>REGISTERED USER DETAILS:</p><br>
+      <div class="firstName">
+        <label>First Name: </label>
+        <label class="result" id="FirstName" data-bind='text: FirstName'></label>
+      </div>
+      <div class="lastName">
+        <label>Last Name: </label>
+        <label class="result" id="LastName" data-bind='text: LastName'></label>
+      </div>
+      <div class="emailId">
+        <label>Email ID: </label>
+        <label class="result" id="EmailID" data-bind='text: EmailID'></label>
+      </div>
+      <div class="contactNo">
+        <label>Contact Number: </label>
+        <label class="result" id="ContactNo" data-bind='text: ContactNo'></label>
+      </div>
+      <div class="age">
+        <label>Age: </label>
+        <label class="result" id="Age" data-bind='text: Age'></label>
+      </div>
+      <input type="button" value="Search" data-bind="click: $root.getAttendeeDetails()" />
+      <br><br>
+    </div>
+  </div>
+</body>
+
+</html>
